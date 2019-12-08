@@ -180,6 +180,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlVisual.BackColor = System.Drawing.Color.White;
+            this.pnlVisual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlVisual.Location = new System.Drawing.Point(3, 31);
             this.pnlVisual.Name = "pnlVisual";
             this.pnlVisual.Size = new System.Drawing.Size(386, 416);

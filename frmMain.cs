@@ -20,15 +20,15 @@ public partial class frmMain : Form {
         public Control control;
     }
 
-    public Task NewTask(string name, Control control, TabPage page = null, int icon = 0) {
+    public Task NewTask(string title, Control control, TabPage page = null, int icon = 0) {
         if (page is null)
             page = new TabPage() {
-                Text = name,
+                Text = title,
                 UseVisualStyleBackColor = true
             };
 
         Task newTask = new Task() {
-            name = name,
+            name = title,
             icon = icon,
             page = page,
             control = control
@@ -46,7 +46,10 @@ public partial class frmMain : Form {
         using (frmNewScanDialog frmNew = new frmNewScanDialog()) {
             frmNew.Icon = this.Icon;
             if (frmNew.ShowDialog() == DialogResult.OK) {
-                NewTask($"Scan: {frmNew.txtTarget.Text}", new Scan(frmNew.txtTarget.Text));
+                string title = frmNew.txtTarget.Text;
+                if (title.EndsWith("\\")) title = title.Substring(0, title.Length - 1);
+                title = title.Split('\\').Last();
+                NewTask($"Scan: {title}", new Scan(frmNew.txtTarget.Text));
             }
         }
     }

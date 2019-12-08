@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.IO;
 using System.Windows.Forms;
+using System.Drawing;
 
 public partial class Scan : UserControl {
 
@@ -24,7 +25,6 @@ public partial class Scan : UserControl {
     private struct FileEnrty {
         public string name;
         public string fullname;
-        public string extention;
         public long cre_date;
         public long mod_date;
         public long size;
@@ -79,8 +79,11 @@ public partial class Scan : UserControl {
             for (int i = 0; i < this.Controls.Count; i++)
                 this.Controls[i].Visible = this.Controls[i] != prgBar;
 
-            TreeNode root = lstTree.Nodes.Add(this.root.EndsWith("\\") ? this.root.Substring(0,this.root.Length -1) : this.root);
-            Populate(root);
+            TreeNode rootNode = lstTree.Nodes.Add(root.EndsWith("\\") ? root.Substring(0, root.Length -1) : root);
+            Populate(rootNode);
+
+            DirEnrty entry = (DirEnrty)this.hashtable[root];
+            this.pnlVisual.BackgroundImage = this.DrawMap((DirEnrty)hashtable[root]);
         }
     }
 
@@ -116,7 +119,6 @@ public partial class Scan : UserControl {
                 files[i] = new FileEnrty() {
                     name      = fileInfo[i].Name,
                     fullname  = fileInfo[i].FullName,
-                    extention = fileInfo[i].Extension,
                     cre_date  = fileInfo[i].CreationTime.Ticks,
                     mod_date  = fileInfo[i].LastWriteTime.Ticks,
                     size      = fileInfo[i].Length
@@ -137,6 +139,10 @@ public partial class Scan : UserControl {
         hashtable.Add(dir.FullName, entry);
 
         return Tuple.Create(size, dirs, files);
+    }
+
+    private Bitmap DrawMap(DirEnrty entry) {
+        return null;
     }
 
     private void Populate(TreeNode node) {
@@ -170,20 +176,15 @@ public partial class Scan : UserControl {
         DirEnrty entry = (DirEnrty)this.hashtable[path];
         
         for (int i = 0; i < entry.subdir.Length; i++) {
-            ListViewItem item = new ListViewItem(new string[] {
+            ListViewItem item = new ListViewItem(
+                new string[] {
                     $"{entry.subdir[i].name}\\",
                     entry.subdir[i].size.ToString(),
                     entry.subdir[i].cre_date.ToString(),
-                    entry.subdir[i].mod_date.ToString()
-                });
+                    entry.subdir[i].mod_date.ToString()});
             item.ImageIndex = 1;
             lstFiles.Items.Add(item);
         }
-
-        /*
-        if (!ContentIcons.Images.Keys.Contains(entry.files[i].fullname))
-        ContentIcons.Images.Add(entry.files[i].extention, Icon.ExtractAssociatedIcon(entry.files[i].fullname));
-        */
 
         for (int i = 0; i < entry.files.Length; i++) {
             ListViewItem item = new ListViewItem(
@@ -191,12 +192,10 @@ public partial class Scan : UserControl {
                     entry.files[i].name,
                     entry.files[i].size.ToString(),
                     entry.files[i].cre_date.ToString(),
-                    entry.files[i].mod_date.ToString()
-                });
+                    entry.files[i].mod_date.ToString()});
             item.ImageIndex = 0;
             lstFiles.Items.Add(item);
         }
-
     }
 
     private void LstTree_AfterExpand(object sender, TreeViewEventArgs e) {
