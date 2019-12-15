@@ -7,6 +7,7 @@ using System.Threading;
 using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 public partial class Scan : UserControl {
 
@@ -82,8 +83,8 @@ public partial class Scan : UserControl {
             TreeNode rootNode = lstTree.Nodes.Add(root.EndsWith("\\") ? root.Substring(0, root.Length -1) : root);
             Populate(rootNode);
 
-            DirEnrty entry = (DirEnrty)this.hashtable[root];
-            this.pnlVisual.BackgroundImage = this.DrawMap((DirEnrty)hashtable[root]);
+            this.pnlMap.BackgroundImage = this.DrawMap();
+            GC.Collect();
         }
     }
 
@@ -141,8 +142,23 @@ public partial class Scan : UserControl {
         return Tuple.Create(size, dirs, files);
     }
 
-    private Bitmap DrawMap(DirEnrty entry) {
-        return null;
+    private Bitmap DrawMap() {
+        Bitmap bmp = new Bitmap(1600, 1600, PixelFormat.Format24bppRgb);
+        using Graphics g = Graphics.FromImage(bmp);
+        g.FillRectangle(Brushes.White, 0, 0, bmp.Width, bmp.Height);
+
+        DrawMapLoop(g, new Rectangle(0, 0, bmp.Width, bmp.Height), this.root);
+
+        return bmp;
+    }
+    
+    private void DrawMapLoop(Graphics g, Rectangle r, string path) {
+        DirEnrty entry = (DirEnrty)this.hashtable[path];
+        ulong size = entry.size;
+
+        //TODO:
+        for (int i = 0; i < entry.subdir.Length; i++) { }
+        for (int i = 0; i < entry.files.Length; i++) { }
     }
 
     private void Populate(TreeNode node) {
@@ -203,4 +219,8 @@ public partial class Scan : UserControl {
             Populate(e.Node.Nodes[i]);
     }
 
+    private void LstFiles_MouseDoubleClick(object sender, MouseEventArgs e) {
+        if (!lstFiles.SelectedItems[0].Text.EndsWith("\\")) return;
+        Console.WriteLine(lstFiles.SelectedItems[0].Text);
+    }
 }

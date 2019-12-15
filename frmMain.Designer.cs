@@ -25,16 +25,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.mnuMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newScanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.compairFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findDublicateFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabsContainer = new System.Windows.Forms.TabControl();
             this.tabMain = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.analyzeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMain.SuspendLayout();
             this.tabsContainer.SuspendLayout();
-            this.tabMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuMain
@@ -42,8 +47,7 @@
             this.mnuMain.BackColor = System.Drawing.SystemColors.Control;
             this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.viewToolStripMenuItem});
+            this.toolsToolStripMenuItem});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
             this.mnuMain.Size = new System.Drawing.Size(800, 24);
@@ -52,21 +56,86 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newScanToolStripMenuItem,
+            this.openFileToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // editToolStripMenuItem
+            // newScanToolStripMenuItem
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.newScanToolStripMenuItem.Name = "newScanToolStripMenuItem";
+            this.newScanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newScanToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.newScanToolStripMenuItem.Text = "New scan";
+            this.newScanToolStripMenuItem.Click += new System.EventHandler(this.newScanToolStripMenuItem_Click);
             // 
-            // viewToolStripMenuItem
+            // openFileToolStripMenuItem
             // 
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "View";
+            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
+            this.openFileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.openFileToolStripMenuItem.Text = "Open file";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 6);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.saveAsToolStripMenuItem.Text = "Save as";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(181, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.analyzeFileToolStripMenuItem,
+            this.compairFilesToolStripMenuItem,
+            this.findDublicateFilesToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // compairFilesToolStripMenuItem
+            // 
+            this.compairFilesToolStripMenuItem.Name = "compairFilesToolStripMenuItem";
+            this.compairFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.compairFilesToolStripMenuItem.Text = "Compair files";
+            // 
+            // findDublicateFilesToolStripMenuItem
+            // 
+            this.findDublicateFilesToolStripMenuItem.Name = "findDublicateFilesToolStripMenuItem";
+            this.findDublicateFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.findDublicateFilesToolStripMenuItem.Text = "Find dublicate files";
             // 
             // tabsContainer
             // 
@@ -86,9 +155,6 @@
             // 
             // tabMain
             // 
-            this.tabMain.Controls.Add(this.button3);
-            this.tabMain.Controls.Add(this.button2);
-            this.tabMain.Controls.Add(this.button1);
             this.tabMain.Location = new System.Drawing.Point(4, 32);
             this.tabMain.Name = "tabMain";
             this.tabMain.Size = new System.Drawing.Size(770, 377);
@@ -96,33 +162,11 @@
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // analyzeFileToolStripMenuItem
             // 
-            this.button3.Location = new System.Drawing.Point(15, 73);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Compair";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(15, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Load file";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(15, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "New scan";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.analyzeFileToolStripMenuItem.Name = "analyzeFileToolStripMenuItem";
+            this.analyzeFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.analyzeFileToolStripMenuItem.Text = "Analyze file";
             // 
             // frmMain
             // 
@@ -138,7 +182,6 @@
             this.mnuMain.ResumeLayout(false);
             this.mnuMain.PerformLayout();
             this.tabsContainer.ResumeLayout(false);
-            this.tabMain.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,11 +191,17 @@
 
     private System.Windows.Forms.MenuStrip mnuMain;
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
     private System.Windows.Forms.TabControl tabsContainer;
     private System.Windows.Forms.TabPage tabMain;
-    private System.Windows.Forms.Button button3;
-    private System.Windows.Forms.Button button2;
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.ToolStripMenuItem newScanToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+    private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+    private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem compairFilesToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem findDublicateFilesToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem analyzeFileToolStripMenuItem;
 }

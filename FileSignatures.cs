@@ -5,6 +5,9 @@ using System.Text;
 
 static class FileSignatures {
 
+    //https://en.wikipedia.org/wiki/List_of_file_signatures
+    //https://www.garykessler.net/library/file_sigs.html
+
     public struct Sign {
         public byte[] signature;
         public uint offset;
@@ -13,10 +16,6 @@ static class FileSignatures {
     }
 
     public static List<Sign> SignList = null;
-
-
-    //https://en.wikipedia.org/wiki/List_of_file_signatures //<=
-    //https://www.garykessler.net/library/file_sigs.html
 
     public static void Init() {
         if (!(SignList is null)) return;
@@ -3351,7 +3350,7 @@ static class FileSignatures {
             });
 
             SignList.Add(new Sign() {
-                signature = new byte[] { 0x7C, 0x4B, 0xC3, 0x74, 0xE1, 0xC8, 0x53, 0xA4, 0x79, 0xB9, 0x01, 0x1D, 0xFC, 0x4F, 0xDD, 0x0x13 },
+                signature = new byte[] { 0x7C, 0x4B, 0xC3, 0x74, 0xE1, 0xC8, 0x53, 0xA4, 0x79, 0xB9, 0x01, 0x1D, 0xFC, 0x4F, 0xDD, 0x13 },
                 offset = 0,
                 extention = "csd",
                 description = "Huskygram, Poem, or Singer embroidery design file"
@@ -3643,7 +3642,6 @@ static class FileSignatures {
                 extention = "jks",
                 description = "JavaKeyStore file"
             });
-
         }
 
         SignList.Sort((Sign a, Sign b) => {

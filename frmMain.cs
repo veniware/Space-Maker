@@ -54,7 +54,7 @@ public partial class frmMain : Form {
         }
     }
 
-    private void button1_Click(object sender, EventArgs e) {
+    private void newScanToolStripMenuItem_Click(object sender, EventArgs e) {
         NewScan();
     }
 }
